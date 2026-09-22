@@ -104,7 +104,7 @@ export type ContactMessage = {
 };
 
 async function rows<T>(table: string, build: (q: any) => any): Promise<T[]> {
-  const { data, error } = await build(supabase.from(table).select("*"));
+  const { data, error } = await build((supabase.from as any)(table).select("*"));
   if (error) throw error;
   return (data ?? []) as T[];
 }

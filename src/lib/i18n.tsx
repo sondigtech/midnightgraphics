@@ -102,6 +102,10 @@ const dict: Dict = {
     en: "Something went wrong. Please try again.",
     sw: "Kuna hitilafu. Tafadhali jaribu tena.",
   },
+  "footer.tagline": {
+    en: "Creative design, printing and digital technology built in Tanzania for brands that want to stand out.",
+    sw: "Ubunifu wa usanifu, uchapishaji na teknolojia ya kidijitali kutoka Tanzania kwa brandi zinazotaka kuonekana.",
+  },
   "footer.quickLinks": { en: "Quick Links", sw: "Viungo vya Haraka" },
   "footer.services": { en: "Services", sw: "Huduma" },
   "footer.contact": { en: "Contact", sw: "Mawasiliano" },

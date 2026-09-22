@@ -45,5 +45,5 @@ export async function deleteFile(path: string) {
 
 export function pathFromUrl(url: string) {
   const match = url.match(/\/media\/(.+?)(\?|$)/);
-  return match ? decodeURIComponent(match[1]) : null;
+  return match?.[1] ? decodeURIComponent(match[1]) : null;
 }
