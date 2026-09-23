@@ -11,8 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CeoRouteImport } from './routes/ceo'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PackagesRouteImport } from './routes/packages'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as RequestRouteImport } from './routes/request'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,9 +29,29 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CeoRoute = CeoRouteImport.update({
+  id: '/ceo',
+  path: '/ceo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackagesRoute = PackagesRouteImport.update({
   id: '/packages',
   path: '/packages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RequestRoute = RequestRouteImport.update({
+  id: '/request',
+  path: '/request',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -34,38 +59,90 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioIdRoute = PortfolioIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => PortfolioRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ceo': typeof CeoRoute
+  '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ceo': typeof CeoRoute
+  '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ceo': typeof CeoRoute
+  '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
+  '/portfolio/$id': typeof PortfolioIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/packages' | '/services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/ceo'
+    | '/contact'
+    | '/packages'
+    | '/portfolio'
+    | '/request'
+    | '/services'
+    | '/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/packages' | '/services'
-  id: '__root__' | '/' | '/about' | '/packages' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/ceo'
+    | '/contact'
+    | '/packages'
+    | '/portfolio'
+    | '/request'
+    | '/services'
+    | '/portfolio/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/ceo'
+    | '/contact'
+    | '/packages'
+    | '/portfolio'
+    | '/request'
+    | '/services'
+    | '/portfolio/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CeoRoute: typeof CeoRoute
+  ContactRoute: typeof ContactRoute
   PackagesRoute: typeof PackagesRoute
+  PortfolioRoute: typeof PortfolioRouteWithChildren
+  RequestRoute: typeof RequestRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -85,11 +162,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ceo': {
+      id: '/ceo'
+      path: '/ceo'
+      fullPath: '/ceo'
+      preLoaderRoute: typeof CeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/packages': {
       id: '/packages'
       path: '/packages'
       fullPath: '/packages'
       preLoaderRoute: typeof PackagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/request': {
+      id: '/request'
+      path: '/request'
+      fullPath: '/request'
+      preLoaderRoute: typeof RequestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -99,13 +204,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio/$id': {
+      id: '/portfolio/$id'
+      path: '/$id'
+      fullPath: '/portfolio/$id'
+      preLoaderRoute: typeof PortfolioIdRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
   }
 }
+
+interface PortfolioRouteChildren {
+  PortfolioIdRoute: typeof PortfolioIdRoute
+}
+
+const PortfolioRouteChildren: PortfolioRouteChildren = {
+  PortfolioIdRoute: PortfolioIdRoute,
+}
+
+const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
+  PortfolioRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CeoRoute: CeoRoute,
+  ContactRoute: ContactRoute,
   PackagesRoute: PackagesRoute,
+  PortfolioRoute: PortfolioRouteWithChildren,
+  RequestRoute: RequestRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
