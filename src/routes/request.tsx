@@ -14,9 +14,8 @@ import { servicesQuery } from "@/lib/data";
 import { uploadFile, validateFile } from "@/lib/storage";
 
 export const Route = createFileRoute("/request")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    service: typeof search.service === "string" ? search.service : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { service?: string } =>
+    typeof search["service"] === "string" ? { service: search["service"] } : {},
   head: () => ({
     meta: [
       { title: "Request a Service | Midnight Graphics Enterprises" },
