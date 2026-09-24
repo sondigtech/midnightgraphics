@@ -42,15 +42,12 @@ function Section({ title, body }: { title: string; body?: string | null }) {
 function Ceo() {
   const { t, pick } = useI18n();
   const ceo = useQuery(ceoQuery());
-  const p = ceo.data as Record<string, any> | null | undefined;
+  const p = ceo.data;
+  const subtitle = p ? pick(p.position_en, p.position_sw) : "";
 
   return (
     <SiteShell>
-      <PageHeader
-        eyebrow={t("ceo.title")}
-        title={(p?.name as string) ?? BRAND.ceo}
-        subtitle={p ? pick(p.position_en, p.position_sw) : undefined}
-      />
+      <PageHeader eyebrow={t("ceo.title")} title={p?.name ?? BRAND.ceo} subtitle={subtitle} />
       <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
         {ceo.isLoading ? (
           <Spinner label={t("common.loading")} />

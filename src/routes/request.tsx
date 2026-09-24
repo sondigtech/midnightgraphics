@@ -14,9 +14,8 @@ import { servicesQuery } from "@/lib/data";
 import { uploadFile, validateFile } from "@/lib/storage";
 
 export const Route = createFileRoute("/request")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    service: typeof search.service === "string" ? search.service : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { service?: string } =>
+    typeof search["service"] === "string" ? { service: search["service"] } : {},
   head: () => ({
     meta: [
       { title: "Request a Service | Midnight Graphics Enterprises" },
@@ -39,6 +38,8 @@ export const Route = createFileRoute("/request")({
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type RequestErrors = Partial<Record<"full_name" | "email" | "service" | "description", string>>;
+
 function RequestPage() {
   const { t, pick } = useI18n();
   const { service } = Route.useSearch();
@@ -57,7 +58,7 @@ function RequestPage() {
     extra_info: "",
   });
   const [file, setFile] = useState<File | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<RequestErrors>({});
   const [sending, setSending] = useState(false);
 
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
@@ -65,7 +66,7 @@ function RequestPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: RequestErrors = {};
     if (!form.full_name.trim()) next.full_name = t("form.required");
     if (!form.email.trim()) next.email = t("form.required");
     else if (!EMAIL_RE.test(form.email.trim())) next.email = t("form.invalidEmail");
@@ -125,7 +126,7 @@ function RequestPage() {
     }
   }
 
-  const fieldError = (key: string) =>
+  const fieldError = (key: keyof RequestErrors) =>
     errors[key] ? (
       <p id={`${key}-err`} className="mt-1 text-xs text-destructive">
         {errors[key]}

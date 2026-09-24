@@ -1,5 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 
 export type Service = {
   id: string;
@@ -17,6 +18,8 @@ export type Service = {
 
 export type Package = {
   id: string;
+  slug: string | null;
+  pricing_type: string;
   name_en: string;
   name_sw: string | null;
   description_en: string | null;
@@ -67,12 +70,8 @@ export type Testimonial = {
   sort_order: number;
 };
 
-export type SiteSettings = Record<string, string | null> & { id: number };
-export type CeoProfile = Record<string, unknown> & {
-  id: number;
-  name: string;
-  skills: string[] | null;
-};
+export type SiteSettings = Database["public"]["Tables"]["site_settings"]["Row"];
+export type CeoProfile = Database["public"]["Tables"]["ceo_profile"]["Row"];
 
 export type ServiceRequest = {
   id: string;

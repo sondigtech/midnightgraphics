@@ -8,6 +8,13 @@
       "when": 1790002060179,
       "tag": "0000_midnight_graphics_core",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790220660884,
+      "tag": "0001_packages_pricing_metadata",
+      "breakpoints": true
     }
   ]
 }
