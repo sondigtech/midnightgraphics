@@ -34,6 +34,8 @@ export const Route = createFileRoute("/contact")({
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type ContactErrors = Partial<Record<"name" | "email" | "message", string>>;
+
 function Contact() {
   const { t } = useI18n();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
