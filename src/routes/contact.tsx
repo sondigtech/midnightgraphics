@@ -37,7 +37,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function Contact() {
   const { t } = useI18n();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<ContactErrors>({});
   const [sending, setSending] = useState(false);
 
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
@@ -45,7 +45,7 @@ function Contact() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: ContactErrors = {};
     if (!form.name.trim()) next.name = t("form.required");
     if (!form.email.trim()) next.email = t("form.required");
     else if (!EMAIL_RE.test(form.email.trim())) next.email = t("form.invalidEmail");
