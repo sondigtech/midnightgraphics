@@ -17,6 +17,13 @@ export function whatsappLink(message: string, number = BRAND.whatsapp) {
   return `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 }
 
+/** Formats an amount the Tanzanian way, e.g. "TSh 150,000". */
+export function formatMoney(amount: number | null | undefined, currency = "TZS") {
+  if (amount == null) return null;
+  const symbol = currency === "TZS" ? "TSh" : currency;
+  return `${symbol} ${Number(amount).toLocaleString("en-US")}`;
+}
+
 export const PORTFOLIO_CATEGORIES = [
   "Graphic Design",
   "Branding",

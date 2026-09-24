@@ -18,6 +18,8 @@ export type Service = {
 
 export type Package = {
   id: string;
+  slug: string | null;
+  pricing_type: string;
   name_en: string;
   name_sw: string | null;
   description_en: string | null;
