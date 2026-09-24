@@ -129,8 +129,11 @@ export type Database = {
           name_sw: string | null
           popular: boolean
           price: number | null
+          pricing_type: string
           published: boolean
+          slug: string | null
           sort_order: number
+          updated_at: string
         }
         Insert: {
           available?: boolean
@@ -147,8 +150,11 @@ export type Database = {
           name_sw?: string | null
           popular?: boolean
           price?: number | null
+          pricing_type?: string
           published?: boolean
+          slug?: string | null
           sort_order?: number
+          updated_at?: string
         }
         Update: {
           available?: boolean
@@ -165,8 +171,11 @@ export type Database = {
           name_sw?: string | null
           popular?: boolean
           price?: number | null
+          pricing_type?: string
           published?: boolean
+          slug?: string | null
           sort_order?: number
+          updated_at?: string
         }
         Relationships: []
       }
