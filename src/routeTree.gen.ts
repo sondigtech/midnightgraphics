@@ -11,17 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CeoRouteImport } from './routes/ceo'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as RequestRouteImport } from './routes/request'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as AdminSectionRouteImport } from './routes/admin.$section'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -34,11 +29,6 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CeoRoute = CeoRouteImport.update({
   id: '/ceo',
   path: '/ceo',
@@ -47,11 +37,6 @@ const CeoRoute = CeoRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackagesRoute = PackagesRouteImport.update({
@@ -69,25 +54,10 @@ const RequestRoute = RequestRouteImport.update({
   path: '/request',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminSectionRoute = AdminSectionRouteImport.update({
-  id: '/$section',
-  path: '/$section',
-  getParentRoute: () => AdminRoute,
 } as any)
 const PortfolioIdRoute = PortfolioIdRouteImport.update({
   id: '/$id',
@@ -98,112 +68,81 @@ const PortfolioIdRoute = PortfolioIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRouteWithChildren
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
-  '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
-  '/admin/$section': typeof AdminSectionRoute
   '/portfolio/$id': typeof PortfolioIdRoute
-  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
-  '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
-  '/admin/$section': typeof AdminSectionRoute
   '/portfolio/$id': typeof PortfolioIdRoute
-  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRouteWithChildren
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
-  '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
-  '/admin/$section': typeof AdminSectionRoute
   '/portfolio/$id': typeof PortfolioIdRoute
-  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/admin'
     | '/ceo'
     | '/contact'
-    | '/login'
     | '/packages'
     | '/portfolio'
     | '/request'
-    | '/reset-password'
     | '/services'
-    | '/admin/$section'
     | '/portfolio/$id'
-    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/ceo'
     | '/contact'
-    | '/login'
     | '/packages'
     | '/portfolio'
     | '/request'
-    | '/reset-password'
     | '/services'
-    | '/admin/$section'
     | '/portfolio/$id'
-    | '/admin'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/admin'
     | '/ceo'
     | '/contact'
-    | '/login'
     | '/packages'
     | '/portfolio'
     | '/request'
-    | '/reset-password'
     | '/services'
-    | '/admin/$section'
     | '/portfolio/$id'
-    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRouteWithChildren
   CeoRoute: typeof CeoRoute
   ContactRoute: typeof ContactRoute
-  LoginRoute: typeof LoginRoute
   PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRouteWithChildren
   RequestRoute: typeof RequestRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -223,13 +162,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/ceo': {
       id: '/ceo'
       path: '/ceo'
@@ -242,13 +174,6 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/packages': {
@@ -272,33 +197,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RequestRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/admin/': {
-      id: '/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/$section': {
-      id: '/admin/$section'
-      path: '/$section'
-      fullPath: '/admin/$section'
-      preLoaderRoute: typeof AdminSectionRouteImport
-      parentRoute: typeof AdminRoute
     }
     '/portfolio/$id': {
       id: '/portfolio/$id'
@@ -309,18 +213,6 @@ declare module '@tanstack/react-router' {
     }
   }
 }
-
-interface AdminRouteChildren {
-  AdminSectionRoute: typeof AdminSectionRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminSectionRoute: AdminSectionRoute,
-  AdminIndexRoute: AdminIndexRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PortfolioRouteChildren {
   PortfolioIdRoute: typeof PortfolioIdRoute
@@ -337,14 +229,11 @@ const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRouteWithChildren,
   CeoRoute: CeoRoute,
   ContactRoute: ContactRoute,
-  LoginRoute: LoginRoute,
   PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRouteWithChildren,
   RequestRoute: RequestRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
