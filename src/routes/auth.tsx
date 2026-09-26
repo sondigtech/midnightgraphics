@@ -62,7 +62,7 @@ function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-hero px-4">
+    <div className="flex min-h-screen items-center justify-center surface-midnight px-4">
       <form onSubmit={submit} className="w-full max-w-sm space-y-5 rounded-2xl border border-border bg-card p-8 shadow-elegant">
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={LOGO_URL} alt="Midnight Graphics" className="h-16 w-16 rounded-full" />
