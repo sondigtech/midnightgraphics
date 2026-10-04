@@ -2,6 +2,7 @@ import { createFileRoute, Link, Outlet, redirect, useNavigate } from "@tanstack/
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import {
+  History,
   Briefcase, FileText, Image, Inbox, LayoutDashboard, LogOut, Mail, Menu, MessageSquareQuote, Package, Settings, UserRound, X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -42,6 +43,7 @@ const NAV = [
   { to: "/admin/requests", label: "Service Requests", icon: Inbox },
   { to: "/admin/messages", label: "Contact Messages", icon: Mail },
   { to: "/admin/settings", label: "Site Settings", icon: Settings },
+  { to: "/admin/activity", label: "Activity Log", icon: History },
 ] as const;
 
 function AdminLayout() {

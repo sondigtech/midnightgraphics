@@ -32,8 +32,8 @@ function AuthPage() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!/^\S+@\S+\.\S+$/.test(email)) return toast.error("Enter a valid email");
-    if (password.length < 8) return toast.error("Password must be at least 8 characters");
+    if (!/^\S+@\S+\.\S+$/.test(email)) { toast.error("Enter a valid email"); return; }
+    if (password.length < 8) { toast.error("Password must be at least 8 characters"); return; }
     setBusy(true);
     try {
       if (mode === "in") {
@@ -55,7 +55,7 @@ function AuthPage() {
   };
 
   const reset = async () => {
-    if (!email) return toast.error("Enter your email first");
+    if (!email) { toast.error("Enter your email first"); return; }
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
     if (error) toast.error(error.message);
     else toast.success("Password reset link sent.");
