@@ -2,6 +2,7 @@ import { createFileRoute, Link, Outlet, redirect, useNavigate } from "@tanstack/
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import {
+  History,
   Briefcase, FileText, Image, Inbox, LayoutDashboard, LogOut, Mail, Menu, MessageSquareQuote, Package, Settings, UserRound, X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";

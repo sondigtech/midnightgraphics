@@ -21,6 +21,7 @@ import { Route as RequestRouteImport } from './routes/request'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminActivityRouteImport } from './routes/admin.activity'
 import { Route as AdminCeoRouteImport } from './routes/admin.ceo'
 import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
 import { Route as AdminPackagesRouteImport } from './routes/admin.packages'
@@ -91,6 +92,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminActivityRoute = AdminActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCeoRoute = AdminCeoRouteImport.update({
   id: '/ceo',
   path: '/ceo',
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/packages': typeof AdminPackagesRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/packages': typeof AdminPackagesRoute
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/packages': typeof AdminPackagesRoute
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
     | '/admin/packages'
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
     | '/admin/packages'
@@ -265,6 +276,7 @@ export interface FileRouteTypes {
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
     | '/admin/packages'
@@ -377,6 +389,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/activity': {
+      id: '/admin/activity'
+      path: '/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminActivityRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/ceo': {
       id: '/admin/ceo'
       path: '/ceo'
@@ -444,6 +463,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminActivityRoute: typeof AdminActivityRoute
   AdminCeoRoute: typeof AdminCeoRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminPackagesRoute: typeof AdminPackagesRoute
@@ -456,6 +476,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminActivityRoute: AdminActivityRoute,
   AdminCeoRoute: AdminCeoRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminPackagesRoute: AdminPackagesRoute,
