@@ -15,11 +15,13 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CeoRouteImport } from './routes/ceo'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as RequestRouteImport } from './routes/request'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TutorialsRouteImport } from './routes/tutorials'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminActivityRouteImport } from './routes/admin.activity'
 import { Route as AdminCeoRouteImport } from './routes/admin.ceo'
@@ -29,8 +31,11 @@ import { Route as AdminPortfolioRouteImport } from './routes/admin.portfolio'
 import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminStudentsRouteImport } from './routes/admin.students'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
+import { Route as AdminTutorialsRouteImport } from './routes/admin.tutorials'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
+import { Route as TutorialsIdRouteImport } from './routes/tutorials.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -62,6 +67,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackagesRoute = PackagesRouteImport.update({
   id: '/packages',
   path: '/packages',
@@ -85,6 +95,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TutorialsRoute = TutorialsRouteImport.update({
+  id: '/tutorials',
+  path: '/tutorials',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -132,15 +147,30 @@ const AdminSettingsRoute = AdminSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminStudentsRoute = AdminStudentsRouteImport.update({
+  id: '/students',
+  path: '/students',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTutorialsRoute = AdminTutorialsRouteImport.update({
+  id: '/tutorials',
+  path: '/tutorials',
   getParentRoute: () => AdminRoute,
 } as any)
 const PortfolioIdRoute = PortfolioIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => PortfolioRoute,
+} as any)
+const TutorialsIdRoute = TutorialsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => TutorialsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -150,11 +180,13 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/tutorials': typeof TutorialsRouteWithChildren
   '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -163,8 +195,11 @@ export interface FileRoutesByFullPath {
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/tutorials': typeof AdminTutorialsRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -173,11 +208,13 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/tutorials': typeof TutorialsRouteWithChildren
   '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -186,8 +223,11 @@ export interface FileRoutesByTo {
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/tutorials': typeof AdminTutorialsRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/tutorials/$id': typeof TutorialsIdRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -198,11 +238,13 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/request': typeof RequestRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/tutorials': typeof TutorialsRouteWithChildren
   '/admin/activity': typeof AdminActivityRoute
   '/admin/ceo': typeof AdminCeoRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -211,8 +253,11 @@ export interface FileRoutesById {
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/students': typeof AdminStudentsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
+  '/admin/tutorials': typeof AdminTutorialsRoute
   '/portfolio/$id': typeof PortfolioIdRoute
+  '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -224,11 +269,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/contact'
+    | '/dashboard'
     | '/packages'
     | '/portfolio'
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/tutorials'
     | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
@@ -237,8 +284,11 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/students'
     | '/admin/testimonials'
+    | '/admin/tutorials'
     | '/portfolio/$id'
+    | '/tutorials/$id'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -247,11 +297,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/contact'
+    | '/dashboard'
     | '/packages'
     | '/portfolio'
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/tutorials'
     | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
@@ -260,8 +312,11 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/students'
     | '/admin/testimonials'
+    | '/admin/tutorials'
     | '/portfolio/$id'
+    | '/tutorials/$id'
     | '/admin'
   id:
     | '__root__'
@@ -271,11 +326,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/contact'
+    | '/dashboard'
     | '/packages'
     | '/portfolio'
     | '/request'
     | '/reset-password'
     | '/services'
+    | '/tutorials'
     | '/admin/activity'
     | '/admin/ceo'
     | '/admin/messages'
@@ -284,8 +341,11 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/students'
     | '/admin/testimonials'
+    | '/admin/tutorials'
     | '/portfolio/$id'
+    | '/tutorials/$id'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -296,11 +356,13 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CeoRoute: typeof CeoRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
   PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRouteWithChildren
   RequestRoute: typeof RequestRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
+  TutorialsRoute: typeof TutorialsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -347,6 +409,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/packages': {
       id: '/packages'
       path: '/packages'
@@ -380,6 +449,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tutorials': {
+      id: '/tutorials'
+      path: '/tutorials'
+      fullPath: '/tutorials'
+      preLoaderRoute: typeof TutorialsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -445,11 +521,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/students': {
+      id: '/admin/students'
+      path: '/students'
+      fullPath: '/admin/students'
+      preLoaderRoute: typeof AdminStudentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/testimonials': {
       id: '/admin/testimonials'
       path: '/testimonials'
       fullPath: '/admin/testimonials'
       preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/tutorials': {
+      id: '/admin/tutorials'
+      path: '/tutorials'
+      fullPath: '/admin/tutorials'
+      preLoaderRoute: typeof AdminTutorialsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/portfolio/$id': {
@@ -458,6 +548,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/portfolio/$id'
       preLoaderRoute: typeof PortfolioIdRouteImport
       parentRoute: typeof PortfolioRoute
+    }
+    '/tutorials/$id': {
+      id: '/tutorials/$id'
+      path: '/$id'
+      fullPath: '/tutorials/$id'
+      preLoaderRoute: typeof TutorialsIdRouteImport
+      parentRoute: typeof TutorialsRoute
     }
   }
 }
@@ -471,7 +568,9 @@ interface AdminRouteChildren {
   AdminRequestsRoute: typeof AdminRequestsRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminStudentsRoute: typeof AdminStudentsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
+  AdminTutorialsRoute: typeof AdminTutorialsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -484,7 +583,9 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminRequestsRoute: AdminRequestsRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminStudentsRoute: AdminStudentsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
+  AdminTutorialsRoute: AdminTutorialsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -502,6 +603,18 @@ const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
   PortfolioRouteChildren,
 )
 
+interface TutorialsRouteChildren {
+  TutorialsIdRoute: typeof TutorialsIdRoute
+}
+
+const TutorialsRouteChildren: TutorialsRouteChildren = {
+  TutorialsIdRoute: TutorialsIdRoute,
+}
+
+const TutorialsRouteWithChildren = TutorialsRoute._addFileChildren(
+  TutorialsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -509,11 +622,13 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CeoRoute: CeoRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
   PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRouteWithChildren,
   RequestRoute: RequestRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
+  TutorialsRoute: TutorialsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
