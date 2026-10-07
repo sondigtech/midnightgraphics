@@ -389,6 +389,7 @@ export type Database = {
           id: number
           instagram: string | null
           logo_url: string | null
+          payment_instructions: string | null
           seo_description: string | null
           seo_title: string | null
           stat_clients: string | null
@@ -398,6 +399,7 @@ export type Database = {
           tagline_en: string | null
           tagline_sw: string | null
           tiktok: string | null
+          tutorial_monthly_price: number
           updated_at: string
           whatsapp: string | null
         }
@@ -415,6 +417,7 @@ export type Database = {
           id?: number
           instagram?: string | null
           logo_url?: string | null
+          payment_instructions?: string | null
           seo_description?: string | null
           seo_title?: string | null
           stat_clients?: string | null
@@ -424,6 +427,7 @@ export type Database = {
           tagline_en?: string | null
           tagline_sw?: string | null
           tiktok?: string | null
+          tutorial_monthly_price?: number
           updated_at?: string
           whatsapp?: string | null
         }
@@ -441,6 +445,7 @@ export type Database = {
           id?: number
           instagram?: string | null
           logo_url?: string | null
+          payment_instructions?: string | null
           seo_description?: string | null
           seo_title?: string | null
           stat_clients?: string | null
@@ -450,8 +455,63 @@ export type Database = {
           tagline_en?: string | null
           tagline_sw?: string | null
           tiktok?: string | null
+          tutorial_monthly_price?: number
           updated_at?: string
           whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      student_subscriptions: {
+        Row: {
+          activated_at: string | null
+          admin_notes: string | null
+          amount: number | null
+          created_at: string
+          currency: string
+          expires_at: string | null
+          full_name: string | null
+          id: string
+          payment_method: string | null
+          payment_reference: string
+          phone: string | null
+          status: string
+          updated_at: string
+          user_email: string | null
+          user_id: string
+        }
+        Insert: {
+          activated_at?: string | null
+          admin_notes?: string | null
+          amount?: number | null
+          created_at?: string
+          currency?: string
+          expires_at?: string | null
+          full_name?: string | null
+          id?: string
+          payment_method?: string | null
+          payment_reference: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          user_email?: string | null
+          user_id: string
+        }
+        Update: {
+          activated_at?: string | null
+          admin_notes?: string | null
+          amount?: number | null
+          created_at?: string
+          currency?: string
+          expires_at?: string | null
+          full_name?: string | null
+          id?: string
+          payment_method?: string | null
+          payment_reference?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          user_email?: string | null
+          user_id?: string
         }
         Relationships: []
       }
@@ -494,6 +554,48 @@ export type Database = {
         }
         Relationships: []
       }
+      tutorials: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          duration: string | null
+          id: string
+          preview_seconds: number
+          published: boolean
+          sort_order: number
+          thumbnail_url: string | null
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          preview_seconds?: number
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          preview_seconds?: number
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -521,12 +623,34 @@ export type Database = {
     }
     Functions: {
       claim_admin: { Args: never; Returns: boolean }
+      get_tutorial_video: {
+        Args: { _id: string }
+        Returns: {
+          full_access: boolean
+          preview_seconds: number
+          video_url: string
+        }[]
+      }
+      has_active_subscription: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      list_tutorials: {
+        Args: never
+        Returns: {
+          category: string
+          description: string
+          duration: string
+          id: string
+          preview_seconds: number
+          sort_order: number
+          thumbnail_url: string
+          title: string
+        }[]
       }
     }
     Enums: {
