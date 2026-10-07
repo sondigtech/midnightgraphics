@@ -64,7 +64,7 @@ function AuthPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center surface-midnight px-4">
-      <form onSubmit={submit} className="w-full max-w-sm space-y-5 rounded-2xl border border-border bg-card p-8 shadow-elegant">
+      <form onSubmit={submit} className="w-full max-w-sm space-y-5 rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-elegant">
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={LOGO_URL} alt="Midnight Graphics" className="h-16 w-16 rounded-full" />
           <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : "Create account"}</h1>
@@ -76,7 +76,7 @@ function AuthPage() {
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="password">Password</Label>
-          <PasswordInput id="password" autoComplete={mode === "in" ? "current-password" : "new-password"} value={password} onChange={(e) => setPassword(e.target.value)} />
+          <PasswordInput id="password" defaultVisible autoComplete={mode === "in" ? "current-password" : "new-password"} value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <Button type="submit" className="w-full" disabled={busy}>
           {busy && <Loader2 className="mr-1 h-4 w-4 animate-spin" />}{mode === "in" ? "Sign in" : "Create account"}
