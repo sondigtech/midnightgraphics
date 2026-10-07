@@ -562,6 +562,7 @@ export type Database = {
           duration: string | null
           id: string
           preview_seconds: number
+          preview_url: string | null
           published: boolean
           sort_order: number
           thumbnail_url: string | null
@@ -575,6 +576,7 @@ export type Database = {
           duration?: string | null
           id?: string
           preview_seconds?: number
+          preview_url?: string | null
           published?: boolean
           sort_order?: number
           thumbnail_url?: string | null
@@ -588,6 +590,7 @@ export type Database = {
           duration?: string | null
           id?: string
           preview_seconds?: number
+          preview_url?: string | null
           published?: boolean
           sort_order?: number
           thumbnail_url?: string | null
