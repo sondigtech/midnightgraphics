@@ -59,9 +59,9 @@ function Dashboard() {
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    if (form.full_name.trim().length < 2) return toast.error("Enter your full name");
-    if (form.phone.trim().length < 9) return toast.error("Enter a valid phone number");
-    if (form.payment_reference.trim().length < 4) return toast.error("Enter the transaction reference");
+    if (form.full_name.trim().length < 2) { toast.error("Enter your full name"); return; }
+    if (form.phone.trim().length < 9) { toast.error("Enter a valid phone number"); return; }
+    if (form.payment_reference.trim().length < 4) { toast.error("Enter the transaction reference"); return; }
     enroll.mutate();
   };
 
