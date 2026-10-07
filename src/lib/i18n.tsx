@@ -12,6 +12,8 @@ const dict: Dict = {
   "nav.portfolio": { en: "Portfolio", sw: "Kazi Zetu" },
   "nav.ceo": { en: "About the CEO", sw: "Kuhusu Mkurugenzi" },
   "nav.contact": { en: "Contact", sw: "Mawasiliano" },
+  "nav.tutorials": { en: "Tutorials", sw: "Mafunzo" },
+  "nav.portal": { en: "Student Portal", sw: "Lango la Wanafunzi" },
   "cta.request": { en: "Request a Service", sw: "Omba Huduma" },
   "cta.getStarted": { en: "Get Started", sw: "Anza Sasa" },
   "cta.explore": { en: "Explore Our Work", sw: "Tazama Kazi Zetu" },

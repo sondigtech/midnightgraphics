@@ -43,6 +43,8 @@ const NAV = [
   { to: "/admin/requests", label: "Service Requests", icon: Inbox },
   { to: "/admin/messages", label: "Contact Messages", icon: Mail },
   { to: "/admin/settings", label: "Site Settings", icon: Settings },
+  { to: "/admin/tutorials", label: "Tutorials", icon: Image },
+  { to: "/admin/students", label: "Students & Payments", icon: UserRound },
   { to: "/admin/activity", label: "Activity Log", icon: History },
 ] as const;
 

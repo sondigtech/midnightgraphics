@@ -13,6 +13,8 @@ const NAV = [
   { to: "/packages", key: "nav.packages" },
   { to: "/portfolio", key: "nav.portfolio" },
   { to: "/ceo", key: "nav.ceo" },
+  { to: "/tutorials", key: "nav.tutorials" },
+  { to: "/dashboard", key: "nav.portal" },
   { to: "/contact", key: "nav.contact" },
 ] as const;
 
