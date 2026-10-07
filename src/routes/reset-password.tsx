@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
@@ -34,7 +34,7 @@ function ResetPassword() {
     <div className="flex min-h-screen items-center justify-center surface-midnight px-4">
       <div className="w-full max-w-sm space-y-4 rounded-2xl border border-border bg-card p-8 text-card-foreground">
         <h1 className="text-xl font-bold">Set a new password</h1>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New password" />
+        <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New password" />
         <Button className="w-full" onClick={() => void submit()}>Update password</Button>
       </div>
     </div>
