@@ -3,8 +3,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export function PasswordInput({ className, ...props }: Omit<ComponentProps<typeof Input>, "type">) {
-  const [show, setShow] = useState(false);
+export function PasswordInput({ className, defaultVisible = false, ...props }: Omit<ComponentProps<typeof Input>, "type"> & { defaultVisible?: boolean }) {
+  const [show, setShow] = useState(defaultVisible);
   return (
     <div className="relative">
       <Input {...props} type={show ? "text" : "password"} className={cn("pr-10", className)} />
