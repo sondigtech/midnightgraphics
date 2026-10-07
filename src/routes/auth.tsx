@@ -41,7 +41,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         await supabase.rpc("claim_admin");
-        navigate({ to: "/admin" });
+        const { data: u } = await supabase.auth.getUser(); const { data: adm } = await supabase.rpc("has_role", { _user_id: u.user?.id ?? "", _role: "admin" }); navigate({ to: adm ? "/admin" : "/dashboard" });
       } else {
         const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/auth` } });
         if (error) throw error;
@@ -67,8 +67,8 @@ function AuthPage() {
       <form onSubmit={submit} className="w-full max-w-sm space-y-5 rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-elegant">
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={LOGO_URL} alt="Midnight Graphics" className="h-16 w-16 rounded-full" />
-          <h1 className="text-xl font-bold">{mode === "in" ? "Admin sign in" : "Create account"}</h1>
-          <p className="text-sm text-muted-foreground">Only approved team emails get admin access.</p>
+          <h1 className="text-xl font-bold">{mode === "in" ? "Sign in" : "Create account"}</h1>
+          <p className="text-sm text-muted-foreground">Students and team members sign in here.</p>
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="email">Email</Label>

@@ -43,7 +43,7 @@ function TutorialsList() {
           <Button asChild><Link to="/dashboard">Enroll in Student Portal</Link></Button>
         </div>
         {list.isLoading ? <CardsSkeleton /> : list.error ? <ErrorState /> : !list.data?.length ? (
-          <EmptyState title="No tutorials yet" />
+          <EmptyState message="No tutorials yet" />
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {list.data.map((t) => (
