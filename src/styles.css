@@ -90,6 +90,8 @@
   --gradient-accent: linear-gradient(120deg, oklch(0.55 0.13 152), oklch(0.62 0.1 175));
   --shadow-elegant: 0 24px 60px -30px oklch(0.22 0.075 265 / 0.45);
   --shadow-glow: 0 0 60px -12px oklch(0.55 0.13 152 / 0.45);
+  --studio-overlay: linear-gradient(90deg, oklch(0.15 0.04 265 / 0.92), oklch(0.15 0.04 265 / 0.63) 42%, oklch(0.15 0.04 265 / 0.08) 78%);
+  --studio-overlay-mobile: linear-gradient(90deg, oklch(0.15 0.04 265 / 0.87), oklch(0.15 0.04 265 / 0.58));
 
   --chart-1: oklch(0.55 0.13 152);
   --chart-2: oklch(0.45 0.11 250);
@@ -150,6 +152,23 @@
 @utility surface-midnight {
   background-image: var(--gradient-midnight);
   color: var(--color-midnight-foreground);
+}
+
+.studio-slide {
+  opacity: 0;
+  transform: scale(1.04) translateX(1%);
+  transition: opacity 900ms ease, transform 3000ms ease-out;
+  object-position: 72% center;
+}
+.studio-slide-active { opacity: 1; transform: scale(1) translateX(0); }
+.studio-shade { background: var(--studio-overlay); }
+.studio-control { color: var(--midnight-foreground); }
+.studio-control:hover { background: color-mix(in oklch, var(--midnight-foreground) 15%, transparent); color: var(--midnight-foreground); }
+@media (max-width: 639px) {
+  .studio-shade { background: var(--studio-overlay-mobile); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-slide { transition: none; transform: none; }
 }
 
 @utility text-gradient-accent {

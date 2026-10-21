@@ -11,3 +11,4 @@
 
 - Service-request decisions use an authenticated server function with a database admin-role check, stored client-facing response and event ID; email retries reuse that event ID to deduplicate sends and never include internal notes.
 - WhatsApp client replies use validated click-to-chat links, not automated Business messaging, so admins control the final send without connector costs.
+- Home studio media lives in a dedicated slideshow component using bundled images, a shared timing constant and reduced-motion support; other Home content remains database controlled.
