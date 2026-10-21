@@ -10,7 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { formatMoney, whatsappLink } from "@/lib/brand";
-import { activeUntil, mySubsQuery, tutorialPriceQuery, tutorialsQuery } from "@/lib/tutorials";
+import { activeUntil, myProgressQuery, mySubsQuery, tutorialPriceQuery, tutorialsQuery } from "@/lib/tutorials";
+import { Progress } from "@/components/ui/progress";
+import { StudyPlan } from "@/components/site/StudyPlan";
 
 export const Route = createFileRoute("/dashboard")({
   ssr: false,
@@ -40,6 +42,13 @@ function Dashboard() {
   const subs = useQuery(mySubsQuery(user.id));
   const price = useQuery(tutorialPriceQuery);
   const tutorials = useQuery(tutorialsQuery);
+  const progress = useQuery(myProgressQuery(user.id));
+  const prog = new Map((progress.data ?? []).map((p) => [p.tutorial_id, p]));
+  const total = tutorials.data?.length ?? 0;
+  const doneCount = (tutorials.data ?? []).filter((t) => prog.get(t.id)?.completed).length;
+  const pct = total ? Math.round((doneCount / total) * 100) : 0;
+  const resume = (progress.data ?? []).find((p) => !p.completed && tutorials.data?.some((t) => t.id === p.tutorial_id));
+  const resumeT = resume ? tutorials.data?.find((t) => t.id === resume.tutorial_id) : undefined;
   const until = activeUntil(subs.data ?? []);
   const pending = subs.data?.some((s) => s.status === "pending");
   const [form, setForm] = useState({ full_name: "", phone: "", payment_method: "M-Pesa", payment_reference: "" });
@@ -121,17 +130,26 @@ function Dashboard() {
         </form>
 
         <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-3">
-          <h2 className="mb-4 flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4" />My tutorials</h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="flex items-center gap-2 font-semibold"><BookOpen className="h-4 w-4" />My tutorials</h2>
+            {resumeT && <Button asChild size="sm"><Link to="/tutorials/$id" params={{ id: resumeT.id }}><PlayCircle className="mr-1 h-4 w-4" />Continue: {resumeT.title}</Link></Button>}
+          </div>
+          <div className="mb-5 space-y-1.5">
+            <div className="flex justify-between text-sm"><span>Course completion</span><span className="font-semibold">{doneCount} / {total} completed · {pct}%</span></div>
+            <Progress value={pct} />
+          </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(tutorials.data ?? []).map((t) => (
               <Link key={t.id} to="/tutorials/$id" params={{ id: t.id }} className="flex items-center gap-3 rounded-xl border border-border p-3 hover:bg-secondary">
                 <PlayCircle className="h-8 w-8 shrink-0 text-accent" />
-                <div><p className="font-medium">{t.title}</p><p className="text-xs text-muted-foreground">{until ? "Full access" : `Preview ${t.preview_seconds}s`}</p></div>
+                <div><p className="font-medium">{t.title}</p><p className="text-xs text-muted-foreground">{prog.get(t.id)?.completed ? "✓ Completed" : prog.get(t.id) ? "In progress" : until ? "Not started" : `Preview ${t.preview_seconds}s`}</p></div>
               </Link>
             ))}
             {!tutorials.data?.length && <p className="text-sm text-muted-foreground">Tutorials will appear here soon.</p>}
           </div>
         </div>
+
+        <StudyPlan />
 
         <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-3">
           <h2 className="mb-4 flex items-center gap-2 font-semibold"><Clock className="h-4 w-4" />Payment history</h2>
