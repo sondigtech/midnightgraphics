@@ -5,7 +5,8 @@ import { PageHeader, SiteShell } from "@/components/site/SiteShell";
 import { CardsSkeleton, EmptyState } from "@/components/site/states";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BRAND, LOGO_URL, whatsappLink } from "@/lib/brand";
+import { BRAND, whatsappLink } from "@/lib/brand";
+import { StudioBackground } from "@/components/site/StudioBackground";
 import { useI18n } from "@/lib/i18n";
 import { portfolioQuery, servicesQuery, settingsQuery, testimonialsQuery } from "@/lib/data";
 
@@ -58,21 +59,19 @@ function Home() {
 
   return (
     <SiteShell>
-      <section className="surface-midnight relative overflow-hidden">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-float-slow" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
-          <div>
-            <Badge className="bg-white/10 text-midnight-foreground hover:bg-white/15">
+      <section className="relative overflow-hidden bg-midnight-deep text-midnight-foreground">
+        <StudioBackground />
+        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-20">
+          <div className="max-w-xl">
+            <Badge className="max-w-full whitespace-normal border-midnight-foreground/20 bg-midnight-foreground/10 text-xs text-midnight-foreground hover:bg-midnight-foreground/15">
               {pick(s?.tagline_en, s?.tagline_sw) || "Graphic Design • Digital Creator"}
             </Badge>
-            <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              {pick(s?.hero_title_en, s?.hero_title_sw) ||
-                "Creative Design. Digital Innovation. Limitless Possibilities."}
-            </h1>
-            <p className="mt-5 max-w-xl text-midnight-foreground/75">
+            <h1 className="mt-4 text-3xl font-bold leading-tight tracking-normal sm:text-5xl lg:text-6xl">Midnight Graphics<br /><span className="text-midnight-foreground/85">Enterprises</span></h1>
+            <p className="mt-4 text-base font-semibold leading-relaxed sm:text-xl">{pick(s?.hero_title_en, s?.hero_title_sw) || "Creative Design. Digital Innovation. Limitless Possibilities."}</p>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-midnight-foreground/80 sm:text-base">
               {pick(s?.hero_subtitle_en, s?.hero_subtitle_sw)}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3 sm:mt-7">
               <Button asChild size="lg">
                 <Link to="/request">
                   {t("cta.getStarted")} <ArrowRight className="ml-1 h-4 w-4" />
@@ -82,32 +81,24 @@ function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/25 bg-white/5 text-midnight-foreground hover:bg-white/10"
+                className="border-midnight-foreground/30 bg-midnight-foreground/5 text-midnight-foreground hover:bg-midnight-foreground/15 hover:text-midnight-foreground"
               >
                 <Link to="/portfolio">{t("cta.explore")}</Link>
               </Button>
             </div>
-            <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="mt-6 grid grid-cols-4 gap-3 border-t border-midnight-foreground/20 pt-4 sm:mt-8 sm:gap-6 sm:pt-5">
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-2xl font-bold text-accent sm:text-3xl">{stat.value}</p>
+                  <p className="text-xl font-bold text-midnight-foreground sm:text-3xl">{stat.value}</p>
                   <p className="mt-1 text-xs text-midnight-foreground/70">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative mx-auto max-w-sm lg:max-w-md">
-            <div className="absolute inset-0 rounded-[2rem] bg-accent/20 blur-2xl" />
-            <img
-              src={LOGO_URL}
-              alt={`${BRAND.name} logo`}
-              className="relative w-full rounded-[2rem] bg-white/5 p-8 shadow-elegant"
-            />
-          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-14 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold sm:text-3xl">{t("services.title")}</h2>
