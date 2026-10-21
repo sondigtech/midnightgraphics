@@ -89,9 +89,24 @@ function Dashboard() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-4 px-4 py-12 sm:px-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Student Portal</p>
-            <h1 className="mt-2 text-3xl font-bold">Karibu, {user.email}</h1>
+            <h1 className="mt-2 text-3xl font-bold">Karibu, {(user.user_metadata?.["full_name"] as string | undefined) || user.email?.split("@")[0]}</h1>
+            <p className="mt-1 text-sm opacity-80">{user.email}</p>
           </div>
-          <Button variant="secondary" onClick={() => void signOut()}><LogOut className="mr-1 h-4 w-4" />Sign out</Button>
+          <div className="flex gap-2">
+            <Button asChild variant="outline"><Link to="/tutorials"><BookOpen className="mr-1 h-4 w-4" />Tutorials</Link></Button>
+            <Button variant="secondary" onClick={() => void signOut()}><LogOut className="mr-1 h-4 w-4" />Sign out</Button>
+          </div>
+        </div>
+        <div className="mx-auto grid max-w-6xl grid-cols-3 gap-3 px-4 pb-8 sm:px-6">
+          {[
+            ["Hali / Status", until ? "Active" : pending ? "Inahakikiwa" : "Haujajiunga"],
+            ["Zimekamilika / Done", `${doneCount} / ${total}`],
+            ["Maendeleo / Progress", `${pct}%`],
+          ].map(([k, v]) => (
+            <div key={k} className="rounded-xl border border-border bg-card p-4 text-card-foreground">
+              <p className="text-xs text-muted-foreground">{k}</p><p className="mt-1 text-lg font-bold">{v}</p>
+            </div>
+          ))}
         </div>
       </section>
 
