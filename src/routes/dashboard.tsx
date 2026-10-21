@@ -89,7 +89,7 @@ function Dashboard() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-4 px-4 py-12 sm:px-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Student Portal</p>
-            <h1 className="mt-2 text-3xl font-bold">Karibu, {(user.user_metadata?.full_name as string | undefined) || user.email?.split("@")[0]}</h1>
+            <h1 className="mt-2 text-3xl font-bold">Karibu, {(user.user_metadata?.["full_name"] as string | undefined) || user.email?.split("@")[0]}</h1>
             <p className="mt-1 text-sm opacity-80">{user.email}</p>
           </div>
           <div className="flex gap-2">
