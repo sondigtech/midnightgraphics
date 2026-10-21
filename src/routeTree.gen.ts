@@ -36,6 +36,7 @@ import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonia
 import { Route as AdminTutorialsRouteImport } from './routes/admin.tutorials'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as TutorialsIdRouteImport } from './routes/tutorials.$id'
+import { Route as ApiPublicClickpesaWebhookRouteImport } from './routes/api/public/clickpesa-webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -172,6 +173,12 @@ const TutorialsIdRoute = TutorialsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => TutorialsRoute,
 } as any)
+const ApiPublicClickpesaWebhookRoute =
+  ApiPublicClickpesaWebhookRouteImport.update({
+    id: '/api/public/clickpesa-webhook',
+    path: '/api/public/clickpesa-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByFullPath {
   '/portfolio/$id': typeof PortfolioIdRoute
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -229,6 +237,7 @@ export interface FileRoutesByTo {
   '/portfolio/$id': typeof PortfolioIdRoute
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin': typeof AdminIndexRoute
+  '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -259,6 +268,7 @@ export interface FileRoutesById {
   '/portfolio/$id': typeof PortfolioIdRoute
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -290,6 +300,7 @@ export interface FileRouteTypes {
     | '/portfolio/$id'
     | '/tutorials/$id'
     | '/admin/'
+    | '/api/public/clickpesa-webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -318,6 +329,7 @@ export interface FileRouteTypes {
     | '/portfolio/$id'
     | '/tutorials/$id'
     | '/admin'
+    | '/api/public/clickpesa-webhook'
   id:
     | '__root__'
     | '/'
@@ -347,6 +359,7 @@ export interface FileRouteTypes {
     | '/portfolio/$id'
     | '/tutorials/$id'
     | '/admin/'
+    | '/api/public/clickpesa-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -363,6 +376,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
   TutorialsRoute: typeof TutorialsRouteWithChildren
+  ApiPublicClickpesaWebhookRoute: typeof ApiPublicClickpesaWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -556,6 +570,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TutorialsIdRouteImport
       parentRoute: typeof TutorialsRoute
     }
+    '/api/public/clickpesa-webhook': {
+      id: '/api/public/clickpesa-webhook'
+      path: '/api/public/clickpesa-webhook'
+      fullPath: '/api/public/clickpesa-webhook'
+      preLoaderRoute: typeof ApiPublicClickpesaWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -629,6 +650,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
   TutorialsRoute: TutorialsRouteWithChildren,
+  ApiPublicClickpesaWebhookRoute: ApiPublicClickpesaWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
