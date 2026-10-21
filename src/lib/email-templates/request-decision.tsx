@@ -21,7 +21,7 @@ function RequestDecision({ name = "mteja", service = "huduma", decision = "appro
 
 export const template = {
   component: RequestDecision,
-  subject: (data) => `${data.decision === "approved" ? "Approved" : "Rejected"}: Ombi lako — Midnight Graphics`,
+  subject: (data) => `${data['decision'] === "approved" ? "Approved" : "Rejected"}: Ombi lako — Midnight Graphics`,
   displayName: "Service request decision",
   previewData: { name: "Amina", service: "Graphic Design", decision: "approved", message: "Tutawasiliana kuhusu hatua zinazofuata." },
 } satisfies TemplateEntry;
