@@ -13,6 +13,7 @@ import { formatMoney, whatsappLink } from "@/lib/brand";
 import { activeUntil, myProgressQuery, mySubsQuery, tutorialPriceQuery, tutorialsQuery } from "@/lib/tutorials";
 import { Progress } from "@/components/ui/progress";
 import { StudyPlan } from "@/components/site/StudyPlan";
+import { MobilePay } from "@/components/site/MobilePay";
 
 export const Route = createFileRoute("/dashboard")({
   ssr: false,
@@ -110,8 +111,10 @@ function Dashboard() {
           )}
         </div>
 
+        <MobilePay amount={amount} />
+
         <form onSubmit={submit} className="space-y-4 rounded-2xl border border-border bg-card p-6 lg:col-span-2">
-          <h2 className="font-semibold">{until ? "Renew / extend access" : "Enroll now"} — {amount} / month</h2>
+          <h2 className="font-semibold">Already paid manually? {until ? "Renew / extend access" : "Enroll"} — {amount} / month</h2>
           <p className="text-sm text-muted-foreground">{price.data?.instructions}</p>
           {price.data?.whatsapp && (
             <a href={whatsappLink(`Hello, I want to pay ${amount} for the Midnight Graphics student plan. Email: ${user.email}`)} target="_blank" rel="noreferrer" className="text-sm font-semibold text-accent">Get payment number on WhatsApp →</a>
