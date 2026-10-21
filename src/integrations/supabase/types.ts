@@ -280,6 +280,7 @@ export type Database = {
           admin_notes: string | null
           attachment_url: string | null
           budget: string | null
+          client_response: string | null
           company: string | null
           created_at: string
           deadline: string | null
@@ -289,6 +290,7 @@ export type Database = {
           full_name: string
           id: string
           phone: string | null
+          response_id: string | null
           service: string | null
           status: Database["public"]["Enums"]["request_status"]
           whatsapp: string | null
@@ -297,6 +299,7 @@ export type Database = {
           admin_notes?: string | null
           attachment_url?: string | null
           budget?: string | null
+          client_response?: string | null
           company?: string | null
           created_at?: string
           deadline?: string | null
@@ -306,6 +309,7 @@ export type Database = {
           full_name: string
           id?: string
           phone?: string | null
+          response_id?: string | null
           service?: string | null
           status?: Database["public"]["Enums"]["request_status"]
           whatsapp?: string | null
@@ -314,6 +318,7 @@ export type Database = {
           admin_notes?: string | null
           attachment_url?: string | null
           budget?: string | null
+          client_response?: string | null
           company?: string | null
           created_at?: string
           deadline?: string | null
@@ -323,6 +328,7 @@ export type Database = {
           full_name?: string
           id?: string
           phone?: string | null
+          response_id?: string | null
           service?: string | null
           status?: Database["public"]["Enums"]["request_status"]
           whatsapp?: string | null
@@ -694,6 +700,8 @@ export type Database = {
         | "in_progress"
         | "completed"
         | "cancelled"
+        | "approved"
+        | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -828,6 +836,8 @@ export const Constants = {
         "in_progress",
         "completed",
         "cancelled",
+        "approved",
+        "rejected",
       ],
     },
   },
