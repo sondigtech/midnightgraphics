@@ -7,11 +7,13 @@
 - Package prices fixed in the database (TSh amounts, Starting From)
 - Admin login + protected admin dashboard
 - Student portal + tutorials with 1-min preview, manual mobile money approval
+- Tutorial progress tracking (resume, completed, dashboard %)
+- AI study plan on student dashboard
 
 ## In progress
-- M-Pesa / Tanzanian mobile money automatic payments (needs payment provider account + keys)
-- Student progress tracking (completed tutorials, resume position, dashboard completion)
-- AI personalized study plan on student dashboard
+- ClickPesa mobile money: built, waiting for ClickPesa Client ID + API key and webhook URL setup
+
+
 
 ## Open (future)
 - News & Updates section + CMS
