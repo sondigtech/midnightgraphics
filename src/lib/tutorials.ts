@@ -42,3 +42,26 @@ export function activeUntil(subs: { status: string; expires_at: string | null }[
   if (!active.length) return null;
   return new Date(Math.max(...active.map((s) => new Date(s.expires_at as string).getTime())));
 }
+
+export type Progress = { tutorial_id: string; position_seconds: number; completed: boolean; updated_at: string };
+
+export const myProgressQuery = (userId: string) =>
+  queryOptions({
+    queryKey: ["my-progress", userId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("tutorial_progress")
+        .select("tutorial_id, position_seconds, completed, updated_at")
+        .eq("user_id", userId)
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []).map((p) => ({ ...p, position_seconds: Number(p.position_seconds) })) as Progress[];
+    },
+  });
+
+export async function saveProgress(userId: string, tutorialId: string, patch: { position_seconds?: number; completed?: boolean }) {
+  const row: Record<string, unknown> = { user_id: userId, tutorial_id: tutorialId, updated_at: new Date().toISOString(), ...patch };
+  if (patch.completed) row["completed_at"] = new Date().toISOString();
+  const { error } = await supabase.from("tutorial_progress").upsert(row as never, { onConflict: "user_id,tutorial_id" });
+  if (error) throw error;
+}
