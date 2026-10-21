@@ -9,9 +9,9 @@
 - Student portal + tutorials with 1-min preview, manual mobile money approval
 - Tutorial progress tracking (resume, completed, dashboard %)
 - AI study plan on student dashboard
+- Admin request approval/rejection with automatic email and WhatsApp reply; verified with admin test request.
 
 ## In progress
-- Admin request approval/rejection with automatic email and WhatsApp reply.
 - ClickPesa mobile money: built, waiting for ClickPesa Client ID + API key and webhook URL setup
 
 
