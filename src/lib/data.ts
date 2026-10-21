@@ -86,7 +86,9 @@ export type ServiceRequest = {
   company: string | null;
   extra_info: string | null;
   attachment_url: string | null;
-  status: "new" | "contacted" | "in_progress" | "completed" | "cancelled";
+  status: "new" | "contacted" | "in_progress" | "completed" | "cancelled" | "approved" | "rejected";
+  client_response: string | null;
+  response_id: string | null;
   admin_notes: string | null;
   created_at: string;
 };

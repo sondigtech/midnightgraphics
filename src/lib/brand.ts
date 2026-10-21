@@ -41,6 +41,8 @@ export const PORTFOLIO_CATEGORIES = [
 
 export const REQUEST_STATUSES = [
   "new",
+  "approved",
+  "rejected",
   "contacted",
   "in_progress",
   "completed",
