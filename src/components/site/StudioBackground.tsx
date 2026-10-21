@@ -36,7 +36,7 @@ export function StudioBackground() {
         ))}
         <div className="studio-shade absolute inset-0" />
       </div>
-      <div className="studio-controls absolute bottom-4 right-4 z-10 flex items-center gap-1 sm:bottom-6 sm:right-8" role="group" aria-label="Studio backgrounds">
+      <div className="studio-controls absolute bottom-3 left-4 z-10 flex items-center gap-1 sm:bottom-6 sm:left-auto sm:right-8" role="group" aria-label="Studio backgrounds">
         <Button variant="ghost" size="icon" className="studio-control h-8 w-8" aria-label="Previous studio" title="Previous studio" onClick={() => setActive((active + STUDIOS.length - 1) % STUDIOS.length)}><ChevronLeft className="h-4 w-4" /></Button>
         {STUDIOS.map((_, index) => <Button key={index} variant="ghost" size="icon" className="studio-control h-8 w-8" aria-label={`Studio ${index + 1}`} aria-pressed={active === index} title={`Studio ${index + 1}`} onClick={() => setActive(index)}><span className={`h-1.5 w-1.5 rounded-full ${active === index ? "bg-accent" : "bg-midnight-foreground/50"}`} /></Button>)}
         <Button variant="ghost" size="icon" className="studio-control h-8 w-8" aria-label="Next studio" title="Next studio" onClick={() => setActive(nextStudioSlide(active, STUDIOS.length))}><ChevronRight className="h-4 w-4" /></Button>

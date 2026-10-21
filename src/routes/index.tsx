@@ -61,18 +61,18 @@ function Home() {
     <SiteShell>
       <section className="relative overflow-hidden bg-midnight-deep text-midnight-foreground">
         <StudioBackground />
-        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-20">
+        <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-7 sm:px-6 sm:pb-20 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-20">
           <div className="max-w-xl">
             <Badge className="max-w-full whitespace-normal border-midnight-foreground/20 bg-midnight-foreground/10 text-xs text-midnight-foreground hover:bg-midnight-foreground/15">
               {pick(s?.tagline_en, s?.tagline_sw) || "Graphic Design • Digital Creator"}
             </Badge>
             <h1 className="mt-4 text-3xl font-bold leading-tight tracking-normal sm:text-5xl lg:text-6xl">Midnight Graphics<br /><span className="text-midnight-foreground/85">Enterprises</span></h1>
             <p className="mt-4 text-base font-semibold leading-relaxed sm:text-xl">{pick(s?.hero_title_en, s?.hero_title_sw) || "Creative Design. Digital Innovation. Limitless Possibilities."}</p>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-midnight-foreground/80 sm:text-base">
+            <p className="mt-3 line-clamp-3 max-w-xl text-sm leading-relaxed text-midnight-foreground/80 sm:line-clamp-none sm:text-base">
               {pick(s?.hero_subtitle_en, s?.hero_subtitle_sw)}
             </p>
             <div className="mt-5 flex flex-wrap gap-3 sm:mt-7">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="px-4 text-xs sm:px-8 sm:text-sm">
                 <Link to="/request">
                   {t("cta.getStarted")} <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -81,7 +81,7 @@ function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-midnight-foreground/30 bg-midnight-foreground/5 text-midnight-foreground hover:bg-midnight-foreground/15 hover:text-midnight-foreground"
+                className="border-midnight-foreground/30 bg-midnight-foreground/5 px-4 text-xs text-midnight-foreground hover:bg-midnight-foreground/15 hover:text-midnight-foreground sm:px-8 sm:text-sm"
               >
                 <Link to="/portfolio">{t("cta.explore")}</Link>
               </Button>
