@@ -37,6 +37,7 @@ import { Route as AdminTutorialsRouteImport } from './routes/admin.tutorials'
 import { Route as PortfolioIdRouteImport } from './routes/portfolio.$id'
 import { Route as TutorialsIdRouteImport } from './routes/tutorials.$id'
 import { Route as ApiPublicClickpesaWebhookRouteImport } from './routes/api/public/clickpesa-webhook'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -179,6 +180,12 @@ const ApiPublicClickpesaWebhookRoute =
     path: '/api/public/clickpesa-webhook',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -209,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -238,6 +246,7 @@ export interface FileRoutesByTo {
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin': typeof AdminIndexRoute
   '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -269,6 +278,7 @@ export interface FileRoutesById {
   '/tutorials/$id': typeof TutorialsIdRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/clickpesa-webhook': typeof ApiPublicClickpesaWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -301,6 +311,7 @@ export interface FileRouteTypes {
     | '/tutorials/$id'
     | '/admin/'
     | '/api/public/clickpesa-webhook'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -330,6 +341,7 @@ export interface FileRouteTypes {
     | '/tutorials/$id'
     | '/admin'
     | '/api/public/clickpesa-webhook'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -360,6 +372,7 @@ export interface FileRouteTypes {
     | '/tutorials/$id'
     | '/admin/'
     | '/api/public/clickpesa-webhook'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -377,6 +390,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TutorialsRoute: typeof TutorialsRouteWithChildren
   ApiPublicClickpesaWebhookRoute: typeof ApiPublicClickpesaWebhookRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -577,6 +591,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicClickpesaWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -651,6 +672,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TutorialsRoute: TutorialsRouteWithChildren,
   ApiPublicClickpesaWebhookRoute: ApiPublicClickpesaWebhookRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
