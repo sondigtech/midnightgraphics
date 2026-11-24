@@ -50,6 +50,13 @@
       "when": 1792607363141,
       "tag": "0006_service_request_decisions",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1795490984206,
+      "tag": "0007_tighten_public_policies",
+      "breakpoints": true
     }
   ]
 }

@@ -16,6 +16,13 @@ import { Label } from "@/components/ui/label";
 import { respondToRequest } from "@/lib/request-responses.functions";
 import { clientDecisionMessage, clientWhatsAppNumber } from "@/lib/request-response";
 
+async function openAttachment(value: string) {
+  if (/^https?:/.test(value)) { window.open(value, "_blank", "noopener"); return; }
+  const { data, error } = await supabase.storage.from("media").createSignedUrl(value, 600);
+  if (error || !data) { toast.error("Could not open attachment"); return; }
+  window.open(data.signedUrl, "_blank", "noopener");
+}
+
 export const Route = createFileRoute("/admin/requests")({
   head: () => ({ meta: [
     { title: "Service Requests Admin | Midnight Graphics" },
@@ -104,7 +111,7 @@ function Requests() {
           {r.extra_info && <p className="whitespace-pre-wrap text-sm text-muted-foreground">{r.extra_info}</p>}
           {r.client_response && <p className="whitespace-pre-wrap border-l-2 border-accent pl-3 text-sm"><span className="font-semibold">Jibu kwa mteja: </span>{r.client_response}</p>}
           {emailResults[r.id] && <p role="status" className="text-sm text-muted-foreground">{emailResults[r.id] === "sent" ? "Email imetumwa." : emailResults[r.id] === "suppressed" ? "Email imezuiwa kwa mteja huyu." : "Email haijatumwa — jaribu tena au tumia WhatsApp."}</p>}
-          {r.attachment_url && <a href={r.attachment_url} target="_blank" rel="noreferrer" className="text-sm text-accent underline">View attachment</a>}
+          {r.attachment_url && <button type="button" className="text-left text-sm text-accent underline" onClick={() => void openAttachment(r.attachment_url as string)}>View attachment</button>}
           <Textarea placeholder="Admin notes" defaultValue={r.admin_notes ?? ""} rows={2}
             onBlur={(e) => e.target.value !== (r.admin_notes ?? "") && update.mutate({ id: r.id, values: { admin_notes: e.target.value } })} />
           <div className="flex flex-wrap gap-2">

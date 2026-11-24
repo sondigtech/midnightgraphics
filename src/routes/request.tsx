@@ -11,7 +11,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { BRAND, whatsappLink } from "@/lib/brand";
 import { useI18n } from "@/lib/i18n";
 import { servicesQuery } from "@/lib/data";
-import { uploadFile, validateFile } from "@/lib/storage";
+import { validateFile } from "@/lib/storage";
+import { createAttachmentUpload } from "@/lib/attachments.functions";
 
 export const Route = createFileRoute("/request")({
   validateSearch: (search: Record<string, unknown>): { service?: string } =>
@@ -85,7 +86,10 @@ function RequestPage() {
           toast.error(invalid);
           return;
         }
-        attachment_url = (await uploadFile(file, "attachments")).url;
+        const up = await createAttachmentUpload({ data: { name: file.name, size: file.size } });
+        const { error: upErr } = await supabase.storage.from("media").uploadToSignedUrl(up.path, up.token, file);
+        if (upErr) throw upErr;
+        attachment_url = up.path;
       }
 
       const { error } = await supabase.from("service_requests").insert({
